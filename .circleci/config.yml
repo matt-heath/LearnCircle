@@ -11,6 +11,8 @@ jobs:
       - run:
           name: KloudFormation Run
           command: chmod +x kloudformation.sh && ./kloudformation.sh -stack-file stack/Stack.kt
+      - store_artifacts:
+          path: template.yml
       - run:
           name: Install cfn-create-or-update
           command: npm install -g cfn-create-or-update
