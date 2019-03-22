@@ -5,10 +5,15 @@ jobs:
       enabled: true
     steps:
       - checkout
-
+      - run:
+          name: KloudFormation Install
+          command: curl -s https://install.kloudformation.hexlabs.io | sh
+      - run:
+          name: KloudFormation Run
+          command: kloudformation -stack-file stack/Stack.kt
       - run:
           name: Install cfn-create-or-update
           command: npm install -g cfn-create-or-update
       - run:
           name: Create stack and s3 bucket using CFT
-          command: cfn-create-or-update --stack-name my-stack --template-body file://cloud.yml --region eu-west-1 --wait
+          command: cfn-create-or-update --stack-name my-stack --template-body file://template.yml --region eu-west-1 --wait
