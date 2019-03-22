@@ -1,16 +1,14 @@
 version: 2
 jobs:
   build:
-    docker:
-      - image: debian:stretch
-
+    machine:
+      enabled: true
     steps:
       - checkout
 
       - run:
-          name: Greeting
-          command: echo Hello, world.
-
+          name: Install cfn-create-or-update
+          command: npm install -g cfn-create-or-update
       - run:
-          name: Print the Current Time
-          command: date
+          name: Create stack and s3 bucket using CFT
+          command: cfn-create-or-update --stack-name my-stack --template-body file://cloud.yml --region eu-west-1 --wait
