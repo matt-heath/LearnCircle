@@ -7,10 +7,10 @@ jobs:
       - checkout
       - run:
           name: KloudFormation Install
-          command: curl -s https://install.kloudformation.hexlabs.io | sh
+          command: curl -s https://install.kloudformation.hexlabs.io/kloudformation.sh -o kloudformation.sh
       - run:
           name: KloudFormation Run
-          command: kloudformation -stack-file stack/Stack.kt
+          command: ./kloudformation.sh -stack-file stack/Stack.kt
       - run:
           name: Install cfn-create-or-update
           command: npm install -g cfn-create-or-update
